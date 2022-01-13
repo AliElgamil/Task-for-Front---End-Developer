@@ -86,10 +86,11 @@ closeBtn.addEventListener("click", () => {
 
 shoosesContainer.addEventListener("click", (e) => {
   const item = e.target;
-
   const parent = item.parentElement;
 
+  if (!item.classList.contains("item-shoose")) return;
   if (parent.classList.contains("disabled")) return;
+
   itemShoose.forEach((item) => item.classList.remove("select"));
 
   item.classList.add("select");
