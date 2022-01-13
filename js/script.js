@@ -157,27 +157,32 @@ replayBtn.addEventListener("click", replay);
 
 const showAns = () => {
   const correctAns = [];
+  let showCount = 0;
 
   if (showAnsBtn.classList.contains("disabled")) return;
 
   itemShoose.forEach((itemSh) => {
-    if (itemSh.dataset.answer === "correct") {
+    if (
+      itemSh.dataset.answer === "correct" &&
+      !itemSh.classList.contains("selected")
+    ) {
       correctAns.push(itemSh.textContent);
       itemSh.classList.add("selected");
       shoosesContainer.classList.add("disabled");
     }
   });
 
-  options.forEach((option, index) => {
+  options.forEach((option) => {
     if (option.classList.contains("filled")) return;
     const html = `
         <div class="answer">
-          <span>${correctAns[index]}</span>
+          <span>${correctAns[showCount]}</span>
           <img src="images/icons/tikMark-small.png" alt="icon" />
         </div>
       `;
 
     option.insertAdjacentHTML("afterbegin", html);
+    showCount++;
   });
 
   showAnsBtn.classList.add("disabled");
