@@ -169,6 +169,7 @@ const showAns = () => {
   });
 
   options.forEach((option, index) => {
+    if (option.classList.contains("filled")) return;
     const html = `
         <div class="answer">
           <span>${correctAns[index]}</span>
