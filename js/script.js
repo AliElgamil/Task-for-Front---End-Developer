@@ -147,6 +147,7 @@ const replay = () => {
     if (item.children[0]) item.children[0].remove();
     shoosesContainer.classList.remove("disabled");
     itemShoose.forEach((item) => item.classList.remove("selected"));
+    options.forEach((option) => option.classList.remove("filled"));
     showAnsBtn.classList.remove("disabled");
     optionFiledCount = 0;
   });
@@ -158,6 +159,8 @@ replayBtn.addEventListener("click", replay);
 const showAns = () => {
   const correctAns = [];
   let showCount = 0;
+
+  console.log(correctAns, showCount);
 
   if (showAnsBtn.classList.contains("disabled")) return;
 
@@ -180,6 +183,8 @@ const showAns = () => {
           <img src="images/icons/tikMark-small.png" alt="icon" />
         </div>
       `;
+
+    console.log(showCount);
 
     option.insertAdjacentHTML("afterbegin", html);
     showCount++;
