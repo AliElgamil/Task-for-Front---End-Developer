@@ -160,7 +160,6 @@ const showAns = () => {
   const correctAns = [];
   let showCount = 0;
 
-  console.log(correctAns, showCount);
 
   if (showAnsBtn.classList.contains("disabled")) return;
 
@@ -184,7 +183,6 @@ const showAns = () => {
         </div>
       `;
 
-    console.log(showCount);
 
     option.insertAdjacentHTML("afterbegin", html);
     showCount++;
