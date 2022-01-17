@@ -22,28 +22,29 @@ const showAnsBtn = document.querySelector(".show-ans");
 
 // Dimensions
 const containerContentBCR = containerContent.getBoundingClientRect();
-let entrieCR;
+// let entrieCR;
 
 // Observer resize
 
 const resizeObserver = new ResizeObserver((entries) => {
   entries.forEach((entrie) => {
-    entrieCR = entrie.contentRect; // Container dimenions
+    const entrieCR = entrie.contentRect; // Container dimenions
 
-    let scale = entrieCR.height / containerContentBCR.height;
-    containerContent.style.transform = `scale(${scale})`;
+    const scale = entrieCR.height / containerContentBCR.height;
 
     const widthContainerContent = containerContentBCR.width * scale; // Width container content
     const widthContainer = entrieCR.width;
 
     const moveLeft = (widthContainer - widthContainerContent) / 2;
 
+    containerContent.style.transform = `scale(${
+      scale * (moveLeft > 1 ? 1 : widthContainer / widthContainerContent)
+    })`;
+
     if (moveLeft > 0) {
       containerContent.style.left = `${moveLeft}px`;
     } else {
-      scale = scale * (widthContainer / widthContainerContent);
       containerContent.style.left = `0`;
-      containerContent.style.transform = `scale(${scale})`;
     }
   });
 });
@@ -160,7 +161,6 @@ const showAns = () => {
   const correctAns = [];
   let showCount = 0;
 
-
   if (showAnsBtn.classList.contains("disabled")) return;
 
   itemShoose.forEach((itemSh) => {
@@ -182,7 +182,6 @@ const showAns = () => {
           <img src="images/icons/tikMark-small.png" alt="icon" />
         </div>
       `;
-
 
     option.insertAdjacentHTML("afterbegin", html);
     showCount++;
